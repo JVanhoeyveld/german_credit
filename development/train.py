@@ -12,6 +12,7 @@ import pandas as pd
 import numpy as np
 pd.pandas.set_option('display.max_columns', None)
 from sklearn.model_selection import train_test_split
+import pickle
 
 from utils.feature_selection import univariate_FS_LR
 from utils.LR_model import train_LR_model_gridsearch
@@ -57,7 +58,25 @@ X_train_prep = preprocessing_pipeline.transform(X_train)
 
 #train final LR model
 lr_model = train_LR_model_gridsearch(X_train_prep, y_train, seed, C_values, score_crit)
-print(lr_model)
+
+
+#persist everything
+with open("VERSION") as version_file:
+    __version__ = version_file.read().strip()
+
+results_train = dict()
+results_train['data_split'] = dict()
+results_train['data_split']['X_train'] = X_train
+results_train['data_split']['X_test'] = X_test
+results_train['data_split']['y_train'] = y_train
+results_train['data_split']['y_test'] = y_test
+results_train['features_selected'] = features_selected
+results_train['preprocessing_pipeline'] = preprocessing_pipeline
+results_train['lr_model'] = lr_model
+
+with open('development/results_train_models/results_train_{}.pkl'.format(__version__), 'wb') as file:
+    pickle.dump(results_train, file)
+    file.close()
 
 
 
