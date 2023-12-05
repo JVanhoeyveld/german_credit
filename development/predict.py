@@ -25,6 +25,7 @@ def predict(input_data: pd.DataFrame):
 
 if __name__ == '__main__':
     from sklearn.metrics import roc_auc_score
+    pd.pandas.set_option('display.max_columns', None)
     X_test = results_train['data_split']['X_test'] 
     y_test = results_train['data_split']['y_test']
     (prediction_binary, prediction_prob) = predict(X_test)
@@ -32,6 +33,7 @@ if __name__ == '__main__':
                            'predicted_binary':prediction_binary,
                            'predicted_prob':prediction_prob})
     auc = roc_auc_score(y_test, prediction_prob)
+    print(X_test)
     print(result) 
     print('the auc on test data is: {}'.format(auc))
 

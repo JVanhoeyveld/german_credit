@@ -1,6 +1,6 @@
 #pipeline to preprocess the data
 from sklearn.pipeline import Pipeline
-from utils.preprocessing import SelectFeatures, ScalerMinMax
+from development.utils.preprocessing import SelectFeatures, ScalerMinMax
 from feature_engine.imputation import CategoricalImputer, MeanMedianImputer
 from feature_engine.encoding import OneHotEncoder
 

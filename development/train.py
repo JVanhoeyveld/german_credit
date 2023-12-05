@@ -14,8 +14,8 @@ pd.pandas.set_option('display.max_columns', None)
 from sklearn.model_selection import train_test_split
 import pickle
 
-from utils.feature_selection import univariate_FS_LR
-from utils.LR_model import train_LR_model_gridsearch
+from development.utils.feature_selection import univariate_FS_LR
+from development.utils.LR_model import train_LR_model_gridsearch
 from pipeline import pipeline_preprocessing
 
 #constants
