@@ -3,29 +3,33 @@ from typing import Optional, List
 
 
 class SingleDataScheme(BaseModel):
+    #goal is to list datatypes of all required fields (the selected features) and also for the non-required fields.
+    #if you use e.g. ClientID: Optional[str] then the field is REQUIRED but the value can be missing (None) or str.
+    #Hence do not use Optional for non-required fields as an error will be raised when field is missing.
+
     #all fields from the raw input data (selected features non optional)
-    ClientID: Optional[str]
-    Astatus: str
-    Duration: float
-    CHistory: str
-    Purpose: str
-    Camount: Optional[float]
-    Saccount: Optional[str]
-    Etime: Optional[str]
-    IRate: Optional[int]
-    Pstatus: Optional[str]
-    Debtors: Optional[str]
-    Residence: Optional[int]
-    Property: Optional[str]
-    Age: Optional[float]
-    Iplans: Optional[str]
-    Housing: str
-    Ncredits: Optional[int]
-    Job: Optional[str]
-    Depend: Optional[int]
-    Phone: Optional[str]
-    Fworker: Optional[str]
-    Status: Optional[int]
+    ClientID: str = None #If ClientID not specified it will be given None default value
+    Astatus: Optional[str] #REQUIRED
+    Duration: Optional[float] #REQUIRED
+    CHistory: Optional[str] #REQUIRED
+    Purpose: Optional[str] #REQUIRED
+    Camount: float = None
+    Saccount: str = None
+    Etime: str = None
+    IRate: int = None
+    Pstatus: str = None
+    Debtors: str = None 
+    Residence: int = None
+    Property: str = None
+    Age: float = None
+    Iplans: str = None
+    Housing: Optional[str] #REQUIRED
+    Ncredits: int = None
+    Job: str = None
+    Depend: int = None
+    Phone: str = None
+    Fworker: str = None
+    Status: int = None
 
 
 class RawDataScheme(BaseModel):
@@ -33,7 +37,7 @@ class RawDataScheme(BaseModel):
 
     #default input values (example showcase the API, equals the first test data point)
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "inputs": [
                     {

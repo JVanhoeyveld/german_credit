@@ -1,7 +1,9 @@
-from .schemas.data_schema import RawDataScheme
+from deployment.schemas.data_schema import RawDataScheme
+from development.predict import predict
 
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from fastapi.encoders import jsonable_encoder
 import pandas as pd
 
 app = FastAPI()
@@ -21,8 +23,12 @@ def welcome():
     return content
 
 
-from development.predict import predict
-from fastapi.encoders import jsonable_encoder
+#To try out get endpoint with parameters (see test_main.py how to test it)
+@app.get('/something_random_with_params')
+def test(a: float = 0, b: float = 0):
+    return {'product': a*b,
+            'sum':a+b}
+
 
 @app.post('/prediction/batch')
 def prediction(input_data: RawDataScheme):
@@ -35,4 +41,3 @@ def prediction(input_data: RawDataScheme):
              'probability predictions':[float(pred) for pred in prediction_prob]}
 
     return results
-
