@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>
+    German Credit Prediction Form
+    </title>
+</head>
+<body>
+    <h1>German Credit Prediction Form</h1>
+    <p>Fill in the below fields and click 'Make prediction' button to make predictions<p>
+    <form method="post">
+        <label for="astatus">Astatus (A11-A14):</label><br>
+        <input name="astatus" value="A11"><br>
+        <br>
+        <label for="duration">Duration (>=0):</label><br>
+        <input name="duration" value=36><br>
+        <br>
+        <label for="chistory">CHistory(A30-A34):</label><br>
+        <input name="chistory" value="A33"><br>
+        <br>
+        <label for="purpose">Purpose(A40-A410):</label><br>
+        <input name="purpose" value="A46"><br>
+        <br>
+        <label for="housing">Housing(A151-A153):</label><br>
+        <input name="housing" value="A152"><br>
+        <br>
+        <button>Make prediction</button>
+    </form>
+    <div>
+        {% if prediction_binary==1 %}
+        <p style='color: red;'> DEFAULT </p>
+        <p>probability of default equals {{prediction_prob}}</p>
+        {% elif prediction_binary==0 %}
+        <p style='color: green;'> NO DEFAULT </p>
+        <p>probability of default equals {{prediction_prob}}</p>
+        {% else %}
+        <p></p>
+        {% endif %}
+    </div>
+</body>
+</html>

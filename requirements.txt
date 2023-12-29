@@ -4,3 +4,5 @@ feature_engine==1.6.2
 fastapi==0.104.1
 httpx==0.25.2
 uvicorn==0.24.0.post1
+Jinja2==3.1.2
+python-multipart==0.0.6

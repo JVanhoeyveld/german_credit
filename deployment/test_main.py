@@ -33,13 +33,13 @@ payload = dict()
 payload["inputs"] = X_test
 
 #call the api to make predictions
-response = client.post('/prediction/batch', json=payload)
+response = client.post('/api/predict', json=payload)
 print(response.status_code)
 print(response.json())
 
 
-#how to test GET endpoint with parameters...
-responst_2 = client.get('/something_random_with_params',
+#how to test POST endpoint with parameters...
+responst_2 = client.post('/something_random_with_params',
                         params={'a': 4,
                                 'b':5})
 print(responst_2.json())
